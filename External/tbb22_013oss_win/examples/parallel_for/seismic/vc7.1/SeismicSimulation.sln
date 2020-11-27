@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeismicSimulation", "SeismicSimulation.vcproj", "{4A021AFA-E254-4BCE-918D-377DF1C0CBEC}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		DD Debug = DD Debug
+		DD Release = DD Release
+		GDI Debug = GDI Debug
+		GDI Release = GDI Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{4A021AFA-E254-4BCE-918D-377DF1C0CBEC}.DD Debug.ActiveCfg = DD Debug|Win32
+		{4A021AFA-E254-4BCE-918D-377DF1C0CBEC}.DD Debug.Build.0 = DD Debug|Win32
+		{4A021AFA-E254-4BCE-918D-377DF1C0CBEC}.DD Release.ActiveCfg = DD Release|Win32
+		{4A021AFA-E254-4BCE-918D-377DF1C0CBEC}.DD Release.Build.0 = DD Release|Win32
+		{4A021AFA-E254-4BCE-918D-377DF1C0CBEC}.GDI Debug.ActiveCfg = Debug|Win32
+		{4A021AFA-E254-4BCE-918D-377DF1C0CBEC}.GDI Debug.Build.0 = Debug|Win32
+		{4A021AFA-E254-4BCE-918D-377DF1C0CBEC}.GDI Release.ActiveCfg = Release|Win32
+		{4A021AFA-E254-4BCE-918D-377DF1C0CBEC}.GDI Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

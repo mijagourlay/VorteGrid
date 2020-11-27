@@ -1,0 +1,63 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tachyon.common", "tachyon.vcproj", "{1D7176EE-63B6-48F2-AB83-FFAD2149C25E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tachyon.serial", "tachyon.serial.vcproj", "{1D7176EE-63B6-48F2-AB83-FFAD2048C25D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tachyon.tbb1d", "tachyon.tbb1d.vcproj", "{1D7176EE-63B6-48F2-AB83-FFAD2348C25D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tachyon.tbb", "tachyon.tbb.vcproj", "{1D7176EE-63B6-48F2-AB83-FFAD2448C25D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		DD Debug = DD Debug
+		DD Release = DD Release
+		GDI Debug = GDI Debug
+		GDI Release = GDI Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{1D7176EE-63B6-48F2-AB83-FFAD2149C25E}.DD Debug.ActiveCfg = DD Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2149C25E}.DD Debug.Build.0 = DD Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2149C25E}.DD Release.ActiveCfg = DD Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2149C25E}.DD Release.Build.0 = DD Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2149C25E}.GDI Debug.ActiveCfg = Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2149C25E}.GDI Debug.Build.0 = Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2149C25E}.GDI Release.ActiveCfg = Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2149C25E}.GDI Release.Build.0 = Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2048C25D}.DD Debug.ActiveCfg = DD Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2048C25D}.DD Debug.Build.0 = DD Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2048C25D}.DD Release.ActiveCfg = DD Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2048C25D}.DD Release.Build.0 = DD Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2048C25D}.GDI Debug.ActiveCfg = Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2048C25D}.GDI Debug.Build.0 = Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2048C25D}.GDI Release.ActiveCfg = Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2048C25D}.GDI Release.Build.0 = Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2348C25D}.DD Debug.ActiveCfg = DD Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2348C25D}.DD Debug.Build.0 = DD Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2348C25D}.DD Release.ActiveCfg = DD Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2348C25D}.DD Release.Build.0 = DD Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2348C25D}.GDI Debug.ActiveCfg = Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2348C25D}.GDI Debug.Build.0 = Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2348C25D}.GDI Release.ActiveCfg = Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2348C25D}.GDI Release.Build.0 = Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2448C25D}.DD Debug.ActiveCfg = DD Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2448C25D}.DD Debug.Build.0 = DD Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2448C25D}.DD Release.ActiveCfg = DD Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2448C25D}.DD Release.Build.0 = DD Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2448C25D}.GDI Debug.ActiveCfg = Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2448C25D}.GDI Debug.Build.0 = Debug|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2448C25D}.GDI Release.ActiveCfg = Release|Win32
+		{1D7176EE-63B6-48F2-AB83-FFAD2448C25D}.GDI Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

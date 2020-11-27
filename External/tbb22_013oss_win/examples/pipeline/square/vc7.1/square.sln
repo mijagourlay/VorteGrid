@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "square", "square.vcproj", "{4A021AFA-E254-4BCE-918D-377DF1C0BEEF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9B2DC020-BBF7-463B-AD0B-0D4ACF49100B} = {9B2DC020-BBF7-463B-AD0B-0D4ACF49100B}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gen_input", "gen_input.vcproj", "{9B2DC020-BBF7-463B-AD0B-0D4ACF49100B}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{4A021AFA-E254-4BCE-918D-377DF1C0BEEF}.Debug.ActiveCfg = Debug|Win32
+		{4A021AFA-E254-4BCE-918D-377DF1C0BEEF}.Debug.Build.0 = Debug|Win32
+		{4A021AFA-E254-4BCE-918D-377DF1C0BEEF}.Release.ActiveCfg = Release|Win32
+		{4A021AFA-E254-4BCE-918D-377DF1C0BEEF}.Release.Build.0 = Release|Win32
+		{9B2DC020-BBF7-463B-AD0B-0D4ACF49100B}.Debug.ActiveCfg = Debug|Win32
+		{9B2DC020-BBF7-463B-AD0B-0D4ACF49100B}.Debug.Build.0 = Debug|Win32
+		{9B2DC020-BBF7-463B-AD0B-0D4ACF49100B}.Release.ActiveCfg = Release|Win32
+		{9B2DC020-BBF7-463B-AD0B-0D4ACF49100B}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

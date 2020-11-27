@@ -1,0 +1,49 @@
+SCC = This is a source code control file
+
+[Collision.vcproj]
+SCC_Aux_Path = "P4SCC#inky:1666##mija##mija_Inky"
+SCC_Project_Name = Perforce Project
+
+[Core.vcproj]
+SCC_Aux_Path = "P4SCC#inky:1666##mija##mija_Inky"
+SCC_Project_Name = Perforce Project
+
+[ParticlesRender.vcproj]
+SCC_Aux_Path = "P4SCC#inky:1666##mija##mija_Inky"
+SCC_Project_Name = Perforce Project
+
+[Render.vcproj]
+SCC_Aux_Path = "P4SCC#inky:1666##mija##mija_Inky"
+SCC_Project_Name = Perforce Project
+
+[Impulsion.vcproj]
+SCC_Aux_Path = "P4SCC#inky:1666##mija##mija_Inky"
+SCC_Project_Name = Perforce Project
+
+[VorteGrid.sln]
+SCC_Aux_Path = "P4SCC#inky:1666##mija##mija_Inky"
+SCC_Project_Name = Perforce Project
+
+[VortonFluid.vcproj]
+SCC_Aux_Path = "P4SCC#inky:1666##mija##mija_Inky"
+SCC_Project_Name = Perforce Project
+
+[VorteGrid.vcproj]
+SCC_Aux_Path = "P4SCC#inky:1666##mija##mija_Inky"
+SCC_Project_Name = Perforce Project
+
+[QdRender.vcproj]
+SCC_Aux_Path = "P4SCC#inky:1666##mija##mija_Inky"
+SCC_Project_Name = Perforce Project
+
+[Image.vcproj]
+SCC_Aux_Path = "P4SCC#inky:1666##mija##mija_Inky"
+SCC_Project_Name = Perforce Project
+
+[Particles.vcproj]
+SCC_Aux_Path = "P4SCC#inky:1666##mija##mija_Inky"
+SCC_Project_Name = Perforce Project
+
+[FluidBodySim.vcproj]
+SCC_Aux_Path = "P4SCC#inky:1666##mija##mija_Inky"
+SCC_Project_Name = Perforce Project
