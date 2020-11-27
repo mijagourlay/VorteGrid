@@ -1,4 +1,4 @@
-# VorteGrid: Interactive Fluid Simulation for Games and Movies
+# [VorteGrid: Interactive Fluid Simulation for Games and Movies](https://www.mijagourlay.com/fluid)
 
 **Many fluid simulations run slowly. Games need fast solutions, even if at the cost of accuracy.**
 
