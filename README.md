@@ -2,6 +2,8 @@
 
 **Many fluid simulations run slowly. Games need fast solutions, even if at the cost of accuracy.**
 
+[![https://youtu.be/Mdzq6Y2IP2c](http://img.youtube.com/vi/Mdzq6Y2IP2c/0.jpg)](http://www.youtube.com/watch?v=Mdzq6Y2IP2c "Vorton Combustion")
+
 Fluid simulations can be slow for many reasons, including these:
 
 * Flow treated as incompressible imposes a divergence-free condition which requires a global solution to enforce that condition.
@@ -27,6 +29,8 @@ It's used in professional software like **[Red Giant Trapcode Suite 15](https://
 including [Red Giant Trapcode Particular](https://www.redgiant.com/products/trapcode-particular/)
 and [Red Giant Trapcode Form](https://www.redgiant.com/products/trapcode-form/).
 
+[![Trapcode Suite 15 with NEW Fluid Dynamics](http://img.youtube.com/vi/5gZDfPyhrNQ/0.jpg)](http://www.youtube.com/watch?v=5gZDfPyhrNQ "Trapcode Suite 15 with NEW Fluid Dynamics")
+    
 I explain below how it works, in 21 articles, with demo videos and source code, all free.
 
 ## Objectives
