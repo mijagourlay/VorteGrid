@@ -186,8 +186,8 @@ Intel Software Network and Gamasutra: Fluid Simulation for Video Games (series o
 ([Gamasutra](https://www.gamasutra.com/view/feature/132564/sponsored_feature_fluid_.php))
 * 2009 July 21:	Fluid videos: [Atomic vortex ring](https://youtu.be/G9E8xEjGzk0). [Ballistic mayhem](https://youtu.be/LdxJ_nfWt0M). [Galaxy of Dots](https://youtu.be/rsJrJ-bzVSw).
 * 2009 July 7:	[Fluid Simulation for Video games: part 1 - Introduction to Fluid Dynamics](https://github.com/mijagourlay/VorteGrid/blob/master/Documents/FluidsForGames_Pt01-IntroToFluidDynamics.pdf)
-([Visual Adrenaline archive](https://web.archive.org/web/20191231003217/https://software.intel.com/en-us/))
 ([Intel archive](https://web.archive.org/web/20200426024331/https://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-1/))
+([Visual Adrenaline archive](https://web.archive.org/web/20191231151734/http://software.intel.com/sites/billboard/archive/fluid-simulation-part-1.php))
 ([Gamasutra](https://www.gamasutra.com/view/feature/132552/sponsored_feature_fluid_.php))
 * 2009 Jan 20:	[Fluid Video - Interactive Fluid Motion for Particle Systems](https://youtu.be/MlFAzXeCB80).
 
