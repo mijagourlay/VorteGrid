@@ -183,8 +183,8 @@ Intel Software Network and Gamasutra: Fluid Simulation for Video Games (series o
 * 2009 Oct 2:	Fluid Simulation for Video games: part 3 - Vortex Particle Fluid Simulation
 * 2009 July 21:	[Fluid Simulation for Video games: part 2 - Fluid Simulation Techniques](https://github.com/mijagourlay/VorteGrid/blob/master/Documents/FluidsForGames_Pt02-Simulation.pdf) ([Gamasutra](https://www.gamasutra.com/view/feature/132564/sponsored_feature_fluid_.php))
 * 2009 July 21:	Fluid videos: [Atomic vortex ring](https://youtu.be/G9E8xEjGzk0). [Ballistic mayhem](https://youtu.be/LdxJ_nfWt0M). [Galaxy of Dots](https://youtu.be/rsJrJ-bzVSw).
-* 2009 July 7:	[Fluid Simulation for Video games: part 1 - Introduction to Fluid Dynamics](https://github.com/mijagourlay/VorteGrid/blob/master/Documents/FluidsForGames_Pt01-IntroToFluidDynamics.pdf) (Visual Adrenaline) ([Gamasutra](https://www.gamasutra.com/view/feature/132552/sponsored_feature_fluid_.php))
-* 2009 Jan 20:	[Fluid Video - Interactive Fluid Motion for Particle Systems](https://youtu.be/MlFAzXeCB80).
+* 2009 July 7:	[Fluid Simulation for Video games: part 1 - Introduction to Fluid Dynamics](https://github.com/mijagourlay/VorteGrid/blob/master/Documents/FluidsForGames_Pt01-IntroToFluidDynamics.pdf) ([Visual Adrenaline archive](https://web.archive.org/web/20191231003217/https://software.intel.com/en-us/)) ([Intel archive](https://web.archive.org/web/20190816113346/https://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-2)) ([Gamasutra](https://www.gamasutra.com/view/feature/132552/sponsored_feature_fluid_.php))
+* 2009 Jan 20:	[Fluid Video - Interactive Fluid Motion for Particle Systems](https://youtu.be/MlFAzXeCB80). ([Intel archive](https://web.archive.org/web/20200426024331/https://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-1/))
 
 * 2008 Aug 11:	Fluid Simulation for Video games:
 International Conference on Computer Graphics and Interactive Techniques ACM SIGGRAPH 2008 posters.
