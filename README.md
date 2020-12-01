@@ -178,8 +178,8 @@ Intel Software Network and Gamasutra: Fluid Simulation for Video Games (series o
 
 * 2009 Dec 7:	Fluid Simulation for Video games: part 5 - Profiling and Optimization
 * 2009 Oct 28:	Fluid Simulation for Video games: part 4 - Two-way Fluid-body Interaction
-* 2009 Oct 28:	Fluid Simulation for Video games on Gamasutra . Part 2
-* 2009 Oct 15:	Fluid Simulation for Video games on Gamasutra . Part 1
+* 2009 Oct 28:	[Fluid Simulation for Video games on Gamasutra . Part 2](https://www.gamasutra.com/view/feature/132564/sponsored_feature_fluid_.php)
+* 2009 Oct 15:	[Fluid Simulation for Video games on Gamasutra . Part 1](https://www.gamasutra.com/view/feature/4164/sponsored_feature_fluid_.php)
 * 2009 Oct 2:	Fluid Simulation for Video games: part 3 - Vortex Particle Fluid Simulation
 * 2009 July 21:	[Fluid Simulation for Video games: part 2 - Fluid Simulation Techniques](https://github.com/mijagourlay/VorteGrid/blob/master/Documents/FluidsForGames_Pt02-Simulation.pdf) ([Gamasutra](https://www.gamasutra.com/view/feature/132564/sponsored_feature_fluid_.php))
 * 2009 July 21:	Fluid videos: [Atomic vortex ring](https://youtu.be/G9E8xEjGzk0). [Ballistic mayhem](https://youtu.be/LdxJ_nfWt0M). [Galaxy of Dots](https://youtu.be/rsJrJ-bzVSw).
