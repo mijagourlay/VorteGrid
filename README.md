@@ -110,8 +110,8 @@ Effects authors can control flows using two methods: They can **tune fluid flow 
 
 Intel Software Network and Gamasutra: Fluid Simulation for Video Games (series of articles)
 
-1. Part 1: [Introduction to Fluid Dynamics](https://github.com/mijagourlay/VorteGrid/blob/master/Documents/FluidsForGames_Pt01-IntroToFluidDynamics.pdf) ([Intel archive](https://web.archive.org/web/20200426024331/https://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-1/)) ([Gamasutra](https://www.gamasutra.com/view/feature/4164/sponsored_feature_fluid_.php)) ([Venture Beat](https://venturebeat.com/2017/07/19/fluid-simulation-for-video-games-part-1/)) ([GitHub](https://github.com/mijagourlay/VorteGrid/wiki/Introduction-to-Fluid-Dynamics))
-1. Part 2: [Simulation Techniques](https://github.com/mijagourlay/VorteGrid/blob/master/Documents/FluidsForGames_Pt02-Simulation.pdf) ([Intel archive](https://web.archive.org/web/20190816113346/https://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-2)) ([Gamasutra](https://www.gamasutra.com/view/feature/4176/sponsored_feature_fluid_.php))
+1. Part 1: [Introduction to Fluid Dynamics](https://github.com/mijagourlay/VorteGrid/blob/master/Documents/FluidsForGames_Pt01-IntroToFluidDynamics.pdf) ([Intel archive](https://web.archive.org/web/20200426024331/https://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-1/)) ([Gamasutra](https://www.gamasutra.com/view/feature/4164/sponsored_feature_fluid_.php)) ([Venture Beat](https://venturebeat.com/2017/07/19/fluid-simulation-for-video-games-part-1/)) ([GitHub](https://github.com/mijagourlay/VorteGrid/wiki/01:-Introduction-to-Fluid-Dynamics))
+1. Part 2: [Simulation Techniques](https://github.com/mijagourlay/VorteGrid/blob/master/Documents/FluidsForGames_Pt02-Simulation.pdf) ([Intel archive](https://web.archive.org/web/20190816113346/https://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-2)) ([Gamasutra](https://www.gamasutra.com/view/feature/4176/sponsored_feature_fluid_.php))([GitHub](https://github.com/mijagourlay/VorteGrid/wiki/02:-Fluid-Simulation-Techniques))
 1. Part 3: Vorton Simulation ([Intel archive](https://web.archive.org/web/20190816113338/https://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-3/))
 1. Part 4: Fluid-Body Interaction ([Intel archive](https://web.archive.org/web/20191006005910/https://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-4))
 1. Part 5: Profiling and Optimization ([Intel archive](https://web.archive.org/web/20191005235439/https://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-5))
@@ -178,13 +178,18 @@ Intel Software Network and Gamasutra: Fluid Simulation for Video Games (series o
 
 * 2009 Dec 7:	Fluid Simulation for Video games: part 5 - Profiling and Optimization
 * 2009 Oct 28:	Fluid Simulation for Video games: part 4 - Two-way Fluid-body Interaction
-* 2009 Oct 28:	Fluid Simulation for Video games on Gamasutra . Part 2
-* 2009 Oct 15:	Fluid Simulation for Video games on Gamasutra . Part 1
+* 2009 Oct 28:	[Fluid Simulation for Video games on Gamasutra . Part 2](https://www.gamasutra.com/view/feature/132564/sponsored_feature_fluid_.php)
+* 2009 Oct 15:	[Fluid Simulation for Video games on Gamasutra . Part 1](https://www.gamasutra.com/view/feature/4164/sponsored_feature_fluid_.php)
 * 2009 Oct 2:	Fluid Simulation for Video games: part 3 - Vortex Particle Fluid Simulation
-* 2009 July 21:	Fluid Simulation for Video games: part 2 - Fluid Simulation Techniques (PDF)
-* 2009 July 21:	Fluid videos: Atomic vortex ring . Ballistic mayhem . Galaxy of Dots .
-* 2009 July 7:	[Fluid Simulation for Video games: part 1 - Introduction to Fluid Dynamics](https://github.com/mijagourlay/VorteGrid/blob/master/Documents/FluidsForGames_Pt01-IntroToFluidDynamics.pdf) (Visual Adrenaline) (PDF)
-* 2009 Jan 20:	Fluid Video. Click on this link, or choose "HQ" in the menu bar below, to see a higher quality version.
+* 2009 July 21:	[Fluid Simulation for Video games: part 2 - Fluid Simulation Techniques](https://github.com/mijagourlay/VorteGrid/blob/master/Documents/FluidsForGames_Pt02-Simulation.pdf)
+([Intel archive](https://web.archive.org/web/20190816113346/https://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-2))
+([Gamasutra](https://www.gamasutra.com/view/feature/132564/sponsored_feature_fluid_.php))
+* 2009 July 21:	Fluid videos: [Atomic vortex ring](https://youtu.be/G9E8xEjGzk0). [Ballistic mayhem](https://youtu.be/LdxJ_nfWt0M). [Galaxy of Dots](https://youtu.be/rsJrJ-bzVSw).
+* 2009 July 7:	[Fluid Simulation for Video games: part 1 - Introduction to Fluid Dynamics](https://github.com/mijagourlay/VorteGrid/blob/master/Documents/FluidsForGames_Pt01-IntroToFluidDynamics.pdf)
+([Intel archive](https://web.archive.org/web/20200426024331/https://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-1/))
+([Visual Adrenaline archive](https://web.archive.org/web/20191231151734/http://software.intel.com/sites/billboard/archive/fluid-simulation-part-1.php))
+([Gamasutra](https://www.gamasutra.com/view/feature/132552/sponsored_feature_fluid_.php))
+* 2009 Jan 20:	[Fluid Video - Interactive Fluid Motion for Particle Systems](https://youtu.be/MlFAzXeCB80).
 
 * 2008 Aug 11:	Fluid Simulation for Video games:
 International Conference on Computer Graphics and Interactive Techniques ACM SIGGRAPH 2008 posters.
