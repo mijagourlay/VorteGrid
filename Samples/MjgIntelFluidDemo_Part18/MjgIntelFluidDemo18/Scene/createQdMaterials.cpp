@@ -1,0 +1,290 @@
+/** \file materials.cpp
+
+    \brief Routines to create render materials and textures for InteSiVis.
+
+*/
+
+#include "inteSiVis.h"
+
+#include "Core/Performance/perfBlock.h"
+
+#include "Image/image.h"
+
+#include "Image/imgOpSequences.h"
+
+
+
+
+/** Make a material with a simple noise texture.
+
+    \param texWidth - see AllocateTexture
+
+    \param texHeight - see AllocateTexture
+
+    \param numTexPages - see AllocateTexture
+
+    \param gamma - see AssignTexturePage
+
+    \note   This can only run after the device is initialized.
+            Due to order-of-operations this cannot easily run
+            in constructor.
+*/
+static void MakeSimpleNoiseQdMaterial( QdMaterial & material , int texWidth , int texHeight , int numTexPages , float gamma )
+{
+    PERF_BLOCK( MakeSimpleNoiseQdMaterial ) ;
+
+    const Vec4 blankColor( 1.0f , 1.0f , 1.0f , 1.0f ) ;
+
+    PeGaSys::Image noise( texWidth , texHeight , 4 , numTexPages ) ;
+    ImgOpSeq_Noise( noise , gamma , blankColor ) ;
+    material.AssignTexture( noise ) ;
+}
+
+
+
+
+/** Make a material with a gradient noise texture.
+
+    \param texWidth - see AllocateTexture
+
+    \param texHeight - see AllocateTexture
+
+    \param numTexPages - see AllocateTexture
+
+    \param gamma - see AssignTexturePage
+
+    \note   This can only run after the device is initialized.
+            Due to order-of-operations this cannot easily run
+            in constructor.
+*/
+//static void MakeGradientNoiseQdMaterial( QdMaterial & material , int texWidth , int texHeight , int numTexPages , float gamma )
+//{
+//    PERF_BLOCK( MakeGradientNoiseQdMaterial ) ;
+//
+//    const Vec4 blankColor( 1.0f , 1.0f , 1.0f , 1.0f ) ;
+//
+//    PeGaSys::Image noise( texWidth , texHeight , 4 , numTexPages ) ;
+//    ImgOpSeq_GradientNoise( noise , gamma , blankColor ) ;
+//    material.AssignTexture( noise ) ;
+//}
+
+
+
+
+/** Create materials for rendering particles.
+*/
+void InteSiVis::CreateParticleQdMaterials()
+{
+    PERF_BLOCK( InteSiVis__CreateParticleQdMaterials ) ;
+
+    ASSERT( ! mInitialized ) ; // This must be the first time this app has displayed anything.
+
+    // Light & heavy diagnostic vorton materials.
+    // This material is used to render vortons diagnostically, that is, for
+    // diagnosing the algorithm.  This material is meant to reveal the vortons
+    // and their state more clearly.
+    {
+        PERF_BLOCK( InteSiVis__CreateParticleQdMaterials_DiagnosticVorton ) ;
+
+        static const unsigned width         = 128 ;
+        static const unsigned height        = 128 ;
+        static const unsigned numChannels   = 4 ;
+        static const unsigned numPages      = 2 ;
+
+        const Vec4 translucentYellowish( 0.9f , 0.9f , 0.1f , 0.125f ) ;
+        const Vec4 translucentCyanish  ( 0.1f , 0.9f , 0.9f , 0.25f ) ;
+
+        PeGaSys::Image noiseBall( width , height , numChannels , numPages ) ;
+        PeGaSys::Image noiseBallLight( noiseBall , PeGaSys::Image::EXTRACT_PAGE , 0 ) ;   // Page 0 of noiseBall
+        PeGaSys::Image noiseBallHeavy( noiseBall , PeGaSys::Image::EXTRACT_PAGE , 1 ) ;   // Page 1 of noiseBall
+        ImgOpSeq_DecoratedNoiseBall( noiseBallLight , 1.5f , translucentYellowish ) ;
+        ImgOpSeq_DecoratedNoiseBall( noiseBallHeavy , 0.5f , translucentCyanish   ) ;
+        mDiagnosticVortonMaterial.AssignTexture( noiseBall ) ;
+
+        mDiagnosticVortonMaterial.SetColor( Vec4( 1.0f , 1.0f , 1.0f , 1.0f ) );
+        mDiagnosticVortonMaterial.SetDepthWrite( false ) ;
+        mDiagnosticVortonMaterial.SetBlendMode( QdMaterial::BM_ALPHA ) ;
+        ASSERT( 1.0f == mDiagnosticVortonMaterial.GetScale() ) ;
+        ASSERT( FLT_MAX == mDiagnosticVortonMaterial.GetDensityVisibility() ) ;
+    }
+
+    // Light & heavy simple vorton materials.
+    // This material is used to render vortons for visual effects.  This
+    // material lacks the obvious decorations, such as outlines and center dot.
+    {
+        PERF_BLOCK( InteSiVis__CreateParticleQdMaterials_DiagnosticSimpleVorton ) ;
+
+        static const unsigned width         = 64 ;
+        static const unsigned height        = 64 ;
+        static const unsigned numChannels   = 4 ;
+        static const unsigned numPages      = 2 ;
+
+        const Vec4 translucentYellowish( 0.9f , 0.9f , 0.1f , 0.125f ) ;
+        const Vec4 translucentCyanish  ( 0.1f , 0.9f , 0.9f , 0.25f ) ;
+
+        PeGaSys::Image noiseBall( width , height , numChannels , numPages ) ;
+        PeGaSys::Image noiseBallLight( noiseBall , PeGaSys::Image::EXTRACT_PAGE , 0 ) ;   // Page 0 of noiseBall
+        PeGaSys::Image noiseBallHeavy( noiseBall , PeGaSys::Image::EXTRACT_PAGE , 1 ) ;   // Page 1 of noiseBall
+        ImgOpSeq_NoiseBall( noiseBallLight , 1.5f , translucentYellowish ) ;
+        ImgOpSeq_NoiseBall( noiseBallHeavy , 0.5f , translucentCyanish   ) ;
+        mSimpleVortonMaterial.AssignTexture( noiseBall ) ;
+
+        mSimpleVortonMaterial.SetColor( Vec4( 1.0f , 1.0f , 1.0f , 1.0f ) );
+        mSimpleVortonMaterial.SetDepthWrite( false ) ;
+        mSimpleVortonMaterial.SetBlendMode( QdMaterial::BM_ALPHA ) ;
+        ASSERT( 1.0f == mSimpleVortonMaterial.GetScale() ) ;
+        ASSERT( FLT_MAX == mSimpleVortonMaterial.GetDensityVisibility() ) ;
+    }
+
+    // Light & heavy tracer dye materials
+    {
+        PERF_BLOCK( InteSiVis__CreateParticleQdMaterials_Dye ) ;
+
+        const Vec4 translucentRedish( 0.9f , 0.1f , 0.1f , 0.125f ) ; // redish
+        const Vec4 translucentBluish( 0.1f , 0.1f , 0.9f , 0.125f ) ; // blueish
+
+        PeGaSys::Image noiseBall( 64 , 64 , 4 , 2 ) ;
+        PeGaSys::Image noiseBallLight( noiseBall , PeGaSys::Image::EXTRACT_PAGE , 0 ) ;   // Page 0 of noiseBall
+        PeGaSys::Image noiseBallHeavy( noiseBall , PeGaSys::Image::EXTRACT_PAGE , 1 ) ;   // Page 1 of noiseBall
+        ImgOpSeq_NoiseBall( noiseBallLight , 0.5f , translucentRedish ) ;
+        ImgOpSeq_NoiseBall( noiseBallHeavy , 0.5f , translucentBluish   ) ;
+        mDyeMaterial.AssignTexture( noiseBall ) ;
+
+        mDyeMaterial.SetColor( Vec4( 1.0f , 1.0f , 1.0f , 1.0f ) );
+        mDyeMaterial.SetDepthWrite( false ) ;
+        mDyeMaterial.SetBlendMode( QdMaterial::BM_ALPHA ) ;
+        mDyeMaterial.SetScale( 1.0123f ) ;
+#   if ENABLE_FIRE
+        mDyeMaterial.SetDensityVisibility( 255.0f * 1000.0f ) ;
+#   else
+        mDyeMaterial.SetDensityVisibility( FLT_MAX ) ;
+#   endif
+    }
+
+    // Light & heavy tracer diagnostic materials
+    {
+        PERF_BLOCK( InteSiVis__CreateParticleQdMaterials_DiagnosticTracer ) ;
+
+        static const unsigned width         = 128 ;
+        static const unsigned height        = 128 ;
+        static const unsigned numChannels   = 4 ;
+        static const unsigned numPages      = 2 ;
+
+#   if 1
+        const Vec4 translucentRedish( 0.9f , 0.1f , 0.1f , 0.125f ) ; // redish
+        const Vec4 translucentBluish( 0.1f , 0.1f , 0.9f , 0.125f ) ; // blueish
+#   else
+        const Vec4 translucentRedish( 0.9f , 0.1f , 0.1f , 1.f ) ; // redish
+        const Vec4 translucentBluish( 0.1f , 0.1f , 0.9f , 0.0f ) ; // blueish
+#   endif
+
+        PeGaSys::Image noiseBall( width , height , numChannels , numPages ) ;
+        PeGaSys::Image noiseBallLight( noiseBall , PeGaSys::Image::EXTRACT_PAGE , 0 ) ;   // Page 0 of noiseBall
+        PeGaSys::Image noiseBallHeavy( noiseBall , PeGaSys::Image::EXTRACT_PAGE , 1 ) ;   // Page 1 of noiseBall
+        ImgOpSeq_DecoratedNoiseBall( noiseBallLight , 1.5f , translucentRedish ) ;
+        ImgOpSeq_DecoratedNoiseBall( noiseBallHeavy , 0.5f , translucentBluish   ) ;
+        mDiagnosticTracerMaterial.AssignTexture( noiseBall ) ;
+
+        mDiagnosticTracerMaterial.SetColor( Vec4( 1.0f , 1.0f , 1.0f , 1.0f ) );
+        mDiagnosticTracerMaterial.SetDepthWrite( false ) ;
+        mDiagnosticTracerMaterial.SetBlendMode( QdMaterial::BM_ALPHA ) ;
+        ASSERT( 1.0f == mDiagnosticTracerMaterial.GetScale() ) ;
+        ASSERT( FLT_MAX == mDiagnosticTracerMaterial.GetDensityVisibility() ) ;
+    }
+
+    // Smoke material
+    {
+        PERF_BLOCK( InteSiVis__CreateParticleQdMaterials_Smoke ) ;
+
+        const Vec4 translucentGray( 0.7f , 0.7f , 0.75f , 0.125f ) ; // light gray with a hint of blue.
+
+        PeGaSys::Image noiseBall( 64 , 64 , 4 , 1 ) ;
+        ImgOpSeq_NoiseBall( noiseBall , 0.5f , translucentGray ) ;
+        mSmokeMaterial.AssignTexture( noiseBall ) ;
+
+        mSmokeMaterial.SetColor( Vec4( 1.0f , 1.0f , 1.0f , 1.0f ) );
+        mSmokeMaterial.SetDepthWrite( false ) ;
+        mSmokeMaterial.SetBlendMode( QdMaterial::BM_ALPHA ) ;
+        mSmokeMaterial.SetScale( 4.0123f ) ;
+#   if ENABLE_FIRE
+        mSmokeMaterial.SetDensityVisibility( 100.0f ) ;
+#   else
+        mSmokeMaterial.SetDensityVisibility( 0.0f ) ;
+#   endif
+    }
+
+    // Flame material
+    {
+        PERF_BLOCK( InteSiVis__CreateParticleQdMaterials_Flame ) ;
+
+        const Vec4 orange( 1.0f , 0.5f , 0.1f , 1.0f ) ; // orange.
+
+        PeGaSys::Image noiseBall( 64 , 64 , 4 , 1 ) ;
+        ImgOpSeq_NoiseBall( noiseBall , 0.5f , orange ) ;
+        mFlameMaterial.AssignTexture( noiseBall ) ;
+
+        mFlameMaterial.SetColor( Vec4( 1.0f , 1.0f , 1.0f , 1.0f ) );
+        mFlameMaterial.SetDepthWrite( false ) ;
+        mFlameMaterial.SetBlendMode( QdMaterial::BM_ADDITIVE ) ;
+        mFlameMaterial.SetScale( 4.0f ) ;
+#   if ENABLE_FIRE
+        mFlameMaterial.SetDensityVisibility( 255.0f * 100.0f ) ;
+#   else
+        mFlameMaterial.SetDensityVisibility( 0.0f ) ;
+#   endif
+    }
+
+    // Fuel material.
+    {
+        PERF_BLOCK( InteSiVis__CreateParticleQdMaterials_Fuel ) ;
+
+        const Vec4 translucentBluish( 0.1f , 0.2f , 0.9f , 0.125f ) ; // blueish
+
+        PeGaSys::Image noiseBall( 64 , 64 , 4 , 1 ) ;
+        ImgOpSeq_NoiseBall( noiseBall , 0.5f , translucentBluish ) ;
+        mFuelMaterial.AssignTexture( noiseBall ) ;
+
+        mFuelMaterial.SetColor( Vec4( 1.0f , 1.0f , 1.0f , 1.0f ) );
+        mFuelMaterial.SetDepthWrite( false ) ;
+        mFuelMaterial.SetBlendMode( QdMaterial::BM_ALPHA ) ;
+        mFuelMaterial.SetScale( 2.0987f ) ;
+#   if ENABLE_FIRE
+        mFuelMaterial.SetDensityVisibility( 255.0f * 100.0f ) ;
+#   else
+        mFuelMaterial.SetDensityVisibility( FLT_MAX ) ;
+#   endif
+    }
+}
+
+
+
+
+/** Create rendering materials.
+*/
+void InteSiVis::CreateQdMaterials()
+{
+    PERF_BLOCK( InteSiVis__CreateQdMaterials ) ;
+
+    ASSERT( ! mInitialized ) ; // This must be the first time this app has displayed anything.
+
+    CreateParticleQdMaterials() ;
+
+    {
+        PERF_BLOCK( InteSiVis__CreateQdMaterials_BoundingBox ) ;
+        MakeSimpleNoiseQdMaterial( mBoundingBoxMaterial , 8 , 8 , 1 , 0.0f ) ;
+        mBoundingBoxMaterial.SetColor( Vec4( 0.7f , 0.7f , 0.7f , 0.1f ) ) ;
+        mBoundingBoxMaterial.SetDepthWrite( false ) ;
+        mBoundingBoxMaterial.SetBlendMode( QdMaterial::BM_ALPHA ) ;
+        mBoundingBoxMaterial.SetCullFace( QdMaterial::CF_NONE ) ;
+    }
+
+    {
+        PERF_BLOCK( InteSiVis__CreateQdMaterials_Pathline ) ;
+        MakeSimpleNoiseQdMaterial( mPathlineMaterial , 8 , 8 , 1 , 0.0f ) ;
+        mPathlineMaterial.SetColor( Vec4( 0.2f , 0.5f , 1.0f , 1.0f ) ) ;
+        mPathlineMaterial.SetDepthWrite( false ) ;
+        mPathlineMaterial.SetBlendMode( QdMaterial::BM_ALPHA ) ;
+    }
+
+    mInitialized = true ;
+}

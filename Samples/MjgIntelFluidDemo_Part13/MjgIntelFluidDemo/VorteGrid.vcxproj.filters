@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Sim">
+      <UniqueIdentifier>{70d47daa-03b9-43d7-b87e-9b9eeb3da1e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sim\Vorton">
+      <UniqueIdentifier>{ee0cd582-3213-49be-a1a8-56b76fce0a27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sim\Particle">
+      <UniqueIdentifier>{544c418d-6cc1-48d7-8c67-415f3658e57d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="inteSiVis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sim\fluidBodySim.cpp">
+      <Filter>Source Files\Sim</Filter>
+    </ClCompile>
+    <ClCompile Include="Sim\Vorton\vorticityDistribution.cpp">
+      <Filter>Source Files\Sim\Vorton</Filter>
+    </ClCompile>
+    <ClCompile Include="Sim\Vorton\vortonGrid.cpp">
+      <Filter>Source Files\Sim\Vorton</Filter>
+    </ClCompile>
+    <ClCompile Include="Sim\Vorton\vortonSim.cpp">
+      <Filter>Source Files\Sim\Vorton</Filter>
+    </ClCompile>
+    <ClCompile Include="Sim\Particle\particle.cpp">
+      <Filter>Source Files\Sim\Particle</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inteSiVis.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\fluidBodySim.h">
+      <Filter>Source Files\Sim</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\pclOpFluidBodyInteraction.h">
+      <Filter>Source Files\Sim</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Vorton\pclOpVortonSim.h">
+      <Filter>Source Files\Sim\Vorton</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Vorton\vorticityDistribution.h">
+      <Filter>Source Files\Sim\Vorton</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Vorton\vorton.h">
+      <Filter>Source Files\Sim\Vorton</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Vorton\vortonClusterAux.h">
+      <Filter>Source Files\Sim\Vorton</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Vorton\vortonGrid.h">
+      <Filter>Source Files\Sim\Vorton</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Vorton\vortonSim.h">
+      <Filter>Source Files\Sim\Vorton</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Vorton\particle.h">
+      <Filter>Source Files\Sim\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Particle\particleOperation.h">
+      <Filter>Source Files\Sim\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Particle\particleProcess.h">
+      <Filter>Source Files\Sim\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Particle\particleSystem.h">
+      <Filter>Source Files\Sim\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Particle\pclOpAdvect.h">
+      <Filter>Source Files\Sim\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Particle\pclOpAssignScalarFromGrid.h">
+      <Filter>Source Files\Sim\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Particle\pclOpEmit.h">
+      <Filter>Source Files\Sim\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Particle\pclOpFindBoundingBox.h">
+      <Filter>Source Files\Sim\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Particle\pclOpKillAge.h">
+      <Filter>Source Files\Sim\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Sim\Particle\pclOpWind.h">
+      <Filter>Source Files\Sim\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon1.ico" />
+    <None Include="VTune\VorteGrid.vpj" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VorteGrid.rc" />
+  </ItemGroup>
+</Project>

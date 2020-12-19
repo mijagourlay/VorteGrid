@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VorteGrid", "VorteGrid.vcproj", "{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		ProfileWithoutTbb = ProfileWithoutTbb
+		ProfileWithTbb = ProfileWithTbb
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.Debug.ActiveCfg = Debug|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.Debug.Build.0 = Debug|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.ProfileWithoutTbb.ActiveCfg = ProfileWithoutTbb|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.ProfileWithoutTbb.Build.0 = ProfileWithoutTbb|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.ProfileWithTbb.ActiveCfg = ProfileWithTbb|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.ProfileWithTbb.Build.0 = ProfileWithTbb|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.Release.ActiveCfg = Release|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionItems) = postSolution
+		READ_ME_FIRST.txt = READ_ME_FIRST.txt
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

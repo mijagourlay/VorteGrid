@@ -1,0 +1,17 @@
+***************
+*** 96,102 ****
+  
+          Vec3    ComputeVelocityDirect( const Vec3 & vPosition ) ;
+          Vec3    ComputeVelocityTree( const Vec3 & vPosition , const unsigned idxParent[3] , size_t iLayer ) ;
+-         Vec3    ComputeVelocityMonopoles( const Vec3 & vPosition ) ;
+  
+          void    ComputeVelocityGridSlice( size_t izStart , size_t izEnd ) ;
+          void    ComputeVelocityGrid( void ) ;
+--- 99,105 ----
+  
+          Vec3    ComputeVelocityDirect( const Vec3 & vPosition ) ;
+          Vec3    ComputeVelocityTree( const Vec3 & vPosition , const unsigned idxParent[3] , size_t iLayer ) ;
++         Vec3    ComputeVelocityMonopoles( const unsigned indices[3] , const Vec3 & vPosition ) ;
+  
+          void    ComputeVelocityGridSlice( size_t izStart , size_t izEnd ) ;
+          void    ComputeVelocityGrid( void ) ;

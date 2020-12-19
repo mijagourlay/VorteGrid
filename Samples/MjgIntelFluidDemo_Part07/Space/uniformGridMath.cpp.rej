@@ -1,0 +1,28 @@
+***************
+*** 506,518 ****
+              for( index[0] = 1 ; index[0] < dimsMinus1[0] ; ++ index[0] )
+              {
+                  ASSIGN_XYZ_OFFSETS ;
+- #error UNTESTED
+                  Vec3 & rSolution = phi[ offsetX0Y0Z0 ] ;
+-                 rSolution +=    (   ( phi[ offsetXPY0Z0 ] + phi[ offsetXMY0Z0 ] ) * reciprocalSpacing2.x
+-                                 +   ( phi[ offsetX0YPZ0 ] + phi[ offsetX0YMZ0 ] ) * reciprocalSpacing2.y
+-                                 +   ( phi[ offsetX0Y0ZP ] + phi[ offsetX0Y0ZM ] ) * reciprocalSpacing2.z
+-                                 +   vec[ offsetX0Y0Z0 ]
+-                                 ) * oneOver2H ;
+              }
+          }
+      }
+--- 520,531 ----
+              for( index[0] = 1 ; index[0] < dimsMinus1[0] ; ++ index[0] )
+              {
+                  ASSIGN_XYZ_OFFSETS ;
+                  Vec3 & rSolution = phi[ offsetX0Y0Z0 ] ;
++                 rSolution = (   ( phi[ offsetXPY0Z0 ] + phi[ offsetXMY0Z0 ] ) * reciprocalSpacing2.x
++                             +   ( phi[ offsetX0YPZ0 ] + phi[ offsetX0YMZ0 ] ) * reciprocalSpacing2.y
++                             +   ( phi[ offsetX0Y0ZP ] + phi[ offsetX0Y0ZM ] ) * reciprocalSpacing2.z
++                             -   vec[ offsetX0Y0Z0 ]
++                             ) * HalfSpacing2Sum ;
+              }
+          }
+      }

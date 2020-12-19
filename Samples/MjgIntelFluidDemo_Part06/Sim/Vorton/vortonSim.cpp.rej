@@ -1,0 +1,266 @@
+***************
+*** 192,212 ****
+  
+  
+  
+- /*! \brief Techniques for computing velocity from vorticity
+- */
+- #define VELOCITY_TECHNIQUE_DIRECT               'VTBF'  ///< Slow (quadratic), accurate direct summation
+- #define VELOCITY_TECHNIQUE_TREE                 'VTTC'  ///< Faster (8N log N), moderately accurate treecode
+- #define VELOCITY_TECHNIQUE_MONOPOLES            'VTMP'  ///< Even faster (N log N), less accurate monopole
+- #define VELOCITY_TECHNIQUE_MONOPOLE_CLUSTERS    'VTMC'  ///< Fastest (linear), least accurate: clusters move as a group
+- 
+- //#define VELOCITY_TECHNIQUE  VELOCITY_TECHNIQUE_DIRECT
+- #define VELOCITY_TECHNIQUE  VELOCITY_TECHNIQUE_TREE
+- //#define VELOCITY_TECHNIQUE  VELOCITY_TECHNIQUE_MONOPOLES
+- //#define VELOCITY_TECHNIQUE  VELOCITY_TECHNIQUE_MONOPOLE_CLUSTERS
+- 
+- 
+- 
+- 
+  DEBUG_ONLY( static unsigned sLeafHits = 0 ) ;                       // Number of times an influence-tree leaf-node was hit while calculating velocity.
+  DEBUG_ONLY( static unsigned sDescents = 0 ) ;                       // Descents while traversing influence tree, calculating velocity.
+  DEBUG_ONLY( static bool     bVerbose  = false ) ;
+--- 192,197 ----
+  
+  
+  
+  DEBUG_ONLY( static unsigned sLeafHits = 0 ) ;                       // Number of times an influence-tree leaf-node was hit while calculating velocity.
+  DEBUG_ONLY( static unsigned sDescents = 0 ) ;                       // Descents while traversing influence tree, calculating velocity.
+  DEBUG_ONLY( static bool     bVerbose  = false ) ;
+***************
+*** 568,590 ****
+  
+                              // Aggregate vorton cluster from child layer into parent layer:
+                              rVortonParent.mPosition  += rVortonChild.mPosition * vortMag ;
+                              rVortonParent.mVorticity += rVortonChild.mVorticity ;
+                              vortAux.mVortNormSum     += vortMag ;
+                              if( rVortonChild.mRadius != 0.0f )
+-                             {
+                                  rVortonParent.mRadius  = rVortonChild.mRadius ;
+                              }
+                          }
+                      }
+                  }
+  
+              #if VELOCITY_TECHNIQUE == VELOCITY_TECHNIQUE_MONOPOLES
+- #error VELOCITY_TECHNIQUE_MONOPOLES is not debugged.
+- This technique does not appear to work.  MJG suspects the problem is not with this part, but with the velocity calculation,
+- but technically neither has been analyzed thoroughly.
+- To analyze, we should be able to determine the total vorticity influence felt by each query point,
+- i.e. the total number of vortons felt.  It should be the same as the total number of vortons.
+- Testing this will require adding another member to the Vorton struct, to count how many vortons this supervorton represents.
+                  for( increment[2] = 0 ; increment[2] < pClusterDims[2] ; ++ increment[2] )
+                  {
+                      const unsigned offsetZ = ( clusterMinIndices[2] + increment[2] ) * numXYchild ;
+--- 596,630 ----
+  
+                              // Aggregate vorton cluster from child layer into parent layer:
+                              rVortonParent.mPosition  += rVortonChild.mPosition * vortMag ;
++                             ASSERT( ! IsNan( rVortonParent.mPosition.x ) ) ;
++                             ASSERT( ! IsInf( rVortonParent.mPosition.x ) ) ;
++ 
+                              rVortonParent.mVorticity += rVortonChild.mVorticity ;
++                             DEBUG_ONLY( rVortonParent.mNumVortonsIncorporated += rVortonChild.mNumVortonsIncorporated ) ;
+                              vortAux.mVortNormSum     += vortMag ;
+                              if( rVortonChild.mRadius != 0.0f )
++                             {   // Child vorton exists
++                             #if VELOCITY_TECHNIQUE == VELOCITY_TECHNIQUE_MONOPOLES
++                                 // Compute parent-to-child distance.
++                                 const Vec3  vParentToChild  = rVortonParent.mPosition - rVortonChild.mPosition ;
++                                 const float fParentToChild2 = vParentToChild.Mag2() ;
++                                 const float fParentToChild4 = POW2( fParentToChild2 ) ;
++                                 const float fParentToChild8 = POW2( fParentToChild4 ) ;
++                                 // Formula for parent radius shall be N-norm sum of parent-child distance:
++                                 // rVortonParent.mRadius += pow( parentChildDist , N ) where N is larger than 2, perhaps 8.
++                                 // (plus mVortonRadius will be added at the very end, outside last loop below)
++                                 rVortonParent.mRadius += fParentToChild8 ;
++                                 ASSERT( ! IsInf( rVortonParent.mRadius ) ) ;
++ 
++                             #else
+                                  rVortonParent.mRadius  = rVortonChild.mRadius ;
++                             #endif
+                              }
+                          }
+                      }
+                  }
+  
+              #if VELOCITY_TECHNIQUE == VELOCITY_TECHNIQUE_MONOPOLES
+                  for( increment[2] = 0 ; increment[2] < pClusterDims[2] ; ++ increment[2] )
+                  {
+                      const unsigned offsetZ = ( clusterMinIndices[2] + increment[2] ) * numXYchild ;
+***************
+*** 778,815 ****
+              The outermost caller should pass in mInfluenceTree.GetDepth().
+  
+  */
+- Vec3 VortonSim::ComputeVelocityMonopoles( const Vec3 & vPosition )
+  {
+      Vec3        velocityAccumulator( 0.0f , 0.0f , 0.0f ) ;
+-     unsigned    indices[4] ;    // indices within base layer of query position
+  
+-     // Obtain indices within base layer of query position
+-     mInfluenceTree[ 0 ].IndicesOfPosition( indices , vPosition ) ;
+  
+      const size_t numLayers = mInfluenceTree.GetDepth() ;
+      for( size_t uLayer = 0 /* base */ ; uLayer < numLayers - 1 ; ++ uLayer )
+      {   // For each layer in influence tree...
+          UniformGrid< Vorton > & rLayer  = mInfluenceTree[ uLayer ] ;
+-         const unsigned          offset  = rLayer.OffsetFromIndices( indices ) ;
+-         const Vorton        &   rVorton = rLayer[ offset ] ;
+  
+          // Compute velocity induced by this supervorton.
+          // Accumulate influence, storing in velocityAccumulator.
+-         VORTON_ACCUMULATE_VELOCITY( velocityAccumulator , vPosition , rVorton ) ;
+  
+          // Compute indices into parent layer
+-         mInfluenceTree.GetParentIndices( indices , indices , uLayer + 1 ) ;
+-         #if defined( _DEBUG )
+          {
+-             unsigned indicesParent[4] ;
+-             mInfluenceTree[ uLayer + 1 ].IndicesOfPosition( indicesParent , vPosition ) ;
+-             ASSERT( indicesParent[0] == indices[0] ) ;
+-             ASSERT( indicesParent[1] == indices[1] ) ;
+-             ASSERT( indicesParent[2] == indices[2] ) ;
+          }
+          #endif
+      }
+  
+      return velocityAccumulator ;
+  }
+  
+--- 909,999 ----
+              The outermost caller should pass in mInfluenceTree.GetDepth().
+  
+  */
++ Vec3 VortonSim::ComputeVelocityMonopoles( const unsigned indices[3] , const Vec3 & vPosition )
+  {
+      Vec3        velocityAccumulator( 0.0f , 0.0f , 0.0f ) ;
++     unsigned    indicesVisited[4] = { indices[0] , indices[1] , indices[2] , 0 } ;
++ 
++ #if defined( _DEBUG )
++     {
++         unsigned    indicesTest[4] ;    // indices within base layer of query position
++         mInfluenceTree[ 0 ].IndicesOfPosition( indicesTest , vPosition ) ;
++     }
++ #endif
++ 
++     DEBUG_ONLY( unsigned numVortonsEncountered = 0 ) ;
++ 
++     // Special case: Compute velocity due to vortons in same gridcell as query point.
++     {
++         UniformGrid< Vorton > & rLayer  = mInfluenceTree[ 0 ] ;
++ 
++         // The outermost layer of the grid contains no vortices.
++         // Any queries that walk along that outer layer see no influence.
++         // Make sure all queries start with indices that lie strictly within the region that contains influence data.
++         indicesVisited[ 0 ] = MIN2( indicesVisited[ 0 ] , rLayer.GetNumCells( 0 ) - 1 ) ;
++         indicesVisited[ 1 ] = MIN2( indicesVisited[ 1 ] , rLayer.GetNumCells( 1 ) - 1 ) ;
++         indicesVisited[ 2 ] = MIN2( indicesVisited[ 2 ] , rLayer.GetNumCells( 2 ) - 1 ) ;
+  
++         const unsigned          offset  = rLayer.OffsetFromIndices( indicesVisited ) ;
++         const Vorton          & rVorton = rLayer[ offset ] ;
++ 
++         VORTON_ACCUMULATE_VELOCITY( velocityAccumulator , vPosition , rVorton ) ;
++ ASSERT( FAbs( velocityAccumulator.x ) < 100.0f ) ; // DO NOT SUBMIT. heuristic, not always correct
++ 
++         DEBUG_ONLY( numVortonsEncountered += rVorton.mNumVortonsIncorporated ) ;
++     }
+  
+      const size_t numLayers = mInfluenceTree.GetDepth() ;
+      for( size_t uLayer = 0 /* base */ ; uLayer < numLayers - 1 ; ++ uLayer )
+      {   // For each layer in influence tree...
+          UniformGrid< Vorton > & rLayer  = mInfluenceTree[ uLayer ] ;
++ 
++         // The outermost layer of the grid contains no vortices.
++         // Any queries that walk along that outer layer see no influence.
++         // Make sure all queries start with indices that lie strictly within the region that contains influence data.
++         indicesVisited[ 0 ] = MIN2( indicesVisited[ 0 ] , rLayer.GetNumCells( 0 ) - 1 ) ;
++         indicesVisited[ 1 ] = MIN2( indicesVisited[ 1 ] , rLayer.GetNumCells( 1 ) - 1 ) ;
++         indicesVisited[ 2 ] = MIN2( indicesVisited[ 2 ] , rLayer.GetNumCells( 2 ) - 1 ) ;
++ 
++         const unsigned  offset  = rLayer.OffsetFromIndices( indicesVisited ) ;
++         Vorton          vorton = rLayer[ offset ] ;
++         // With this technique, we want to calculate the velocity due to siblings of this vorton
++         // (not due to this vorton itself).
++         vorton.mPosition  = vorton.mPositionSiblings ;
++         ASSERT( ! IsNan( vorton.mPosition.x ) ) ;
++         ASSERT( ! IsInf( vorton.mPosition.x ) ) ;
++ 
++         vorton.mVorticity = vorton.mVorticitySiblings ;
++         vorton.mRadius    = vorton.mRadiusSiblings ;
+  
+          // Compute velocity induced by this supervorton.
+          // Accumulate influence, storing in velocityAccumulator.
++         VORTON_ACCUMULATE_VELOCITY( velocityAccumulator , vPosition , vorton ) ;
++ 
++         ASSERT( ! IsInf( velocityAccumulator.x ) ) ;
++ ASSERT( FAbs( velocityAccumulator.x ) < 100.0f ) ; // DO NOT SUBMIT. heuristic, not always correct
++ 
++         DEBUG_ONLY( numVortonsEncountered += vorton.mNumSibVortonsIncorporated ) ;
+  
+          // Compute indices into parent layer
++         mInfluenceTree.GetParentIndices( indicesVisited , indicesVisited , uLayer + 1 ) ;
++         #if 0 && defined( _DEBUG )
+          {
++             unsigned indicesParentTest[4] ;
++             mInfluenceTree[ uLayer + 1 ].IndicesOfPosition( indicesParentTest , vPosition ) ;
++             ASSERT( indicesParentTest[0] == indicesVisited[0] ) ;
++             ASSERT( indicesParentTest[1] == indicesVisited[1] ) ;
++             ASSERT( indicesParentTest[2] == indicesVisited[2] ) ;
+          }
+          #endif
++         ASSERT( ( vorton.mIndicesOfParent[0] == 0x7fffffff ) || ( vorton.mIndicesOfParent[0] == indicesVisited[0] ) ) ;
++         ASSERT( ( vorton.mIndicesOfParent[1] == 0x7fffffff ) || ( vorton.mIndicesOfParent[1] == indicesVisited[1] ) ) ;
++         ASSERT( ( vorton.mIndicesOfParent[2] == 0x7fffffff ) || ( vorton.mIndicesOfParent[2] == indicesVisited[2] ) ) ;
+      }
+  
++     ASSERT( mVortons.Size() == numVortonsEncountered ) ;
++     DEBUG_ONLY( printf( "nv[%3i,%3i,%3i]= %u\n" , indices[0] , indices[1], indices[2] , numVortonsEncountered ) ) ;
++ 
+      return velocityAccumulator ;
+  }
+  
+***************
+*** 894,909 ****
+              #if VELOCITY_TECHNIQUE == VELOCITY_TECHNIQUE_DIRECT
+                  mVelGrid[ offsetXYZ ] = ComputeVelocityDirect( vPosition ) ;
+              #elif VELOCITY_TECHNIQUE == VELOCITY_TECHNIQUE_TREE
+                  static const unsigned zeros[3] = { 0 , 0 , 0 } ; // Starter indices for recursive algorithm
+                  mVelGrid[ offsetXYZ ] = ComputeVelocityTree( vPosition , zeros , numLayers - 1  ) ;
+              #elif VELOCITY_TECHNIQUE == VELOCITY_TECHNIQUE_MONOPOLES
+-                 mVelGrid[ offsetXYZ ] = ComputeVelocityMonopoles( vPosition ) ;
+              #else
+                  #error Undefined technique
+              #endif
+              }
+          }
+      }
+  }
+  
+  
+--- 1078,1101 ----
+              #if VELOCITY_TECHNIQUE == VELOCITY_TECHNIQUE_DIRECT
+                  mVelGrid[ offsetXYZ ] = ComputeVelocityDirect( vPosition ) ;
+              #elif VELOCITY_TECHNIQUE == VELOCITY_TECHNIQUE_TREE
++                 DEBUG_ONLY( sNumVortonsEncounteredInTree = 0 ) ;
+                  static const unsigned zeros[3] = { 0 , 0 , 0 } ; // Starter indices for recursive algorithm
+                  mVelGrid[ offsetXYZ ] = ComputeVelocityTree( vPosition , zeros , numLayers - 1  ) ;
++                 #if ( USE_TBB == 0 )
++                 ASSERT( mVortons.Size() == sNumVortonsEncounteredInTree ) ;
++                 #endif
+              #elif VELOCITY_TECHNIQUE == VELOCITY_TECHNIQUE_MONOPOLES
++                 mVelGrid[ offsetXYZ ] = ComputeVelocityMonopoles( idx , vPosition ) ;
++                 ASSERT( ! IsInf( mVelGrid[ offsetXYZ ].x ) ) ;
+              #else
+                  #error Undefined technique
+              #endif
+              }
+          }
+      }
++ #if VELOCITY_TECHNIQUE == VELOCITY_TECHNIQUE_MONOPOLES
++     DEBUG_ONLY( printf( "\n" ) ) ;
++ #endif
+  }
+  
+  

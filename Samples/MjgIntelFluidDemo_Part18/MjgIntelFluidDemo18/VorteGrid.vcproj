@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="VorteGrid"
+	ProjectGUID="{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}"
+	RootNamespace="VorteGrid"
+	Keyword="Win32Proj">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="$(SolutionName)\$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionName)\$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="&quot;External/glut-3.7.6&quot;;./;&quot;$(TBB22_INSTALL_DIR)\include&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;TBB_USE_DEBUG;USE_TBB=0"
+				RuntimeLibrary="1"
+				UsePrecompiledHeader="0"
+				WarningLevel="4"
+				WarnAsError="TRUE"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"
+				DisableSpecificWarnings="4996"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="Core.lib Collision.lib FluidBodySim.lib Image.lib Impulsion.lib Particles.lib Render.lib QdRender.lib VortonFluid.lib"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="&quot;Core\$(ConfigurationName)&quot;;&quot;Collision\$(ConfigurationName)_$(PlatformName)&quot;;&quot;FluidBodySim\$(ConfigurationName)&quot;;&quot;Image\$(ConfigurationName)_$(PlatformName)&quot;;&quot;Impulsion\$(ConfigurationName)_$(PlatformName)&quot;;&quot;Particles\$(ConfigurationName)_$(PlatformName)&quot;;&quot;Render\$(ConfigurationName)_$(PlatformName)&quot;;&quot;QdRender\$(ConfigurationName)&quot;;&quot;VortonFluid\$(ConfigurationName)&quot;;&quot;External/glut-3.7.6/$(ConfigurationName)&quot;;&quot;$(TBB22_INSTALL_DIR)\ia32\vc7.1\lib&quot;"
+				GenerateDebugInformation="TRUE"
+				SubSystem="1"
+				TargetMachine="1"
+				FixedBaseAddress="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Description="Copying DLLs from External to executable dir."
+				CommandLine="copy &quot;External\glut-3.7.6\Debug\glut32.dll&quot; &quot;$(OutDir)&quot;
+copy &quot;$(TBB22_INSTALL_DIR)\ia32\vc7.1\bin\tbb_debug.dll&quot; &quot;$(OutDir)&quot;
+"/>
+			<Tool
+				Name="VCPreBuildEventTool"
+				Description="Releasing PDB file handle"
+				CommandLine="Scripts\freePdb-koltaiga.cmd $(ProjectName)"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(SolutionName)\$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionName)\$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/GL /fp:fast"
+				Optimization="2"
+				GlobalOptimizations="TRUE"
+				InlineFunctionExpansion="2"
+				EnableIntrinsicFunctions="TRUE"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;External/glut-3.7.6&quot;;./;&quot;$(TBB22_INSTALL_DIR)\include&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;USE_TBB=1;_SECURE_SCL=0;_SECURE_SCL_THROWS=0;_HAS_ITERATOR_DEBUGGING=0"
+				RuntimeLibrary="0"
+				BufferSecurityCheck="FALSE"
+				EnableFunctionLevelLinking="FALSE"
+				EnableEnhancedInstructionSet="2"
+				UsePrecompiledHeader="0"
+				WarningLevel="4"
+				WarnAsError="TRUE"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"
+				DisableSpecificWarnings="4702;4996"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/LTCG"
+				AdditionalDependencies="Core.lib Collision.lib FluidBodySim.lib Image.lib Impulsion.lib Particles.lib Render.lib QdRender.lib VortonFluid.lib"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="&quot;Core\$(ConfigurationName)&quot;;&quot;Collision\$(ConfigurationName)_$(PlatformName)&quot;;&quot;FluidBodySim\$(ConfigurationName)&quot;;&quot;Image\$(ConfigurationName)_$(PlatformName)&quot;;&quot;Impulsion\$(ConfigurationName)_$(PlatformName)&quot;;&quot;Particles\$(ConfigurationName)_$(PlatformName)&quot;;&quot;Render\$(ConfigurationName)_$(PlatformName)&quot;;&quot;QdRender\$(ConfigurationName)&quot;;&quot;VortonFluid\$(ConfigurationName)&quot;;&quot;External/glut-3.7.6/$(ConfigurationName)&quot;;&quot;$(TBB22_INSTALL_DIR)\ia32\vc7.1\lib&quot;"
+				GenerateDebugInformation="TRUE"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+				FixedBaseAddress="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Description="Copying DLLs from External to executable dir."
+				CommandLine="copy &quot;External\glut-3.7.6\Release\glut32.dll&quot; &quot;$(OutDir)&quot;
+copy &quot;$(TBB22_INSTALL_DIR)\ia32\vc7.1\bin\tbb.dll&quot;  &quot;$(OutDir)&quot;
+
+"/>
+			<Tool
+				Name="VCPreBuildEventTool"
+				Description="Releasing PDB file handle"
+				CommandLine="Scripts\freePdb-koltaiga.cmd $(ProjectName)"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="ProfileWithoutTbb|Win32"
+			OutputDirectory="$(SolutionName)\$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionName)\$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/GL /fp:fast"
+				Optimization="2"
+				GlobalOptimizations="TRUE"
+				InlineFunctionExpansion="2"
+				EnableIntrinsicFunctions="TRUE"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;External/glut-3.7.6&quot;;./"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;USE_TBB=0;PROFILE=2;_SECURE_SCL=0;_SECURE_SCL_THROWS=0;_HAS_ITERATOR_DEBUGGING=0"
+				RuntimeLibrary="0"
+				BufferSecurityCheck="FALSE"
+				EnableEnhancedInstructionSet="2"
+				UsePrecompiledHeader="0"
+				WarningLevel="4"
+				WarnAsError="TRUE"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"
+				DisableSpecificWarnings="4702;4996"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/LTCG"
+				AdditionalDependencies="Core.lib Collision.lib FluidBodySim.lib Image.lib Impulsion.lib Particles.lib Render.lib QdRender.lib VortonFluid.lib"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="&quot;Core\$(ConfigurationName)&quot;;&quot;Collision\Profile_$(PlatformName)&quot;;&quot;FluidBodySim\$(ConfigurationName)&quot;;&quot;Image\Profile_$(PlatformName)&quot;;&quot;Impulsion\Profile_$(PlatformName)&quot;;&quot;Particles\$(ConfigurationName)_$(PlatformName)&quot;;&quot;Render\$(ConfigurationName)_$(PlatformName)&quot;;&quot;QdRender\$(ConfigurationName)&quot;;&quot;VortonFluid\$(ConfigurationName)&quot;;&quot;External/glut-3.7.6/Release&quot;"
+				GenerateDebugInformation="TRUE"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+				FixedBaseAddress="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Description="Copying DLLs from External to executable dir."
+				CommandLine="copy &quot;External\glut-3.7.6\Release\glut32.dll&quot; &quot;$(OutDir)&quot;
+
+"/>
+			<Tool
+				Name="VCPreBuildEventTool"
+				Description="Releasing PDB file handle"
+				CommandLine="Scripts\freePdb-koltaiga.cmd $(ProjectName)"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Profile|Win32"
+			OutputDirectory="$(SolutionName)\$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionName)\$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/GL /fp:fast"
+				Optimization="2"
+				GlobalOptimizations="TRUE"
+				InlineFunctionExpansion="2"
+				EnableIntrinsicFunctions="TRUE"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;External/glut-3.7.6&quot;;./;&quot;$(TBB22_INSTALL_DIR)\include&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;USE_TBB=1;PROFILE=2;_SECURE_SCL=0;_SECURE_SCL_THROWS=0;_HAS_ITERATOR_DEBUGGING=0"
+				RuntimeLibrary="0"
+				BufferSecurityCheck="FALSE"
+				EnableFunctionLevelLinking="FALSE"
+				EnableEnhancedInstructionSet="2"
+				UsePrecompiledHeader="0"
+				WarningLevel="4"
+				WarnAsError="TRUE"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"
+				DisableSpecificWarnings="4702;4996"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/LTCG"
+				AdditionalDependencies="Core.lib Collision.lib FluidBodySim.lib Image.lib Impulsion.lib Particles.lib Render.lib QdRender.lib VortonFluid.lib"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="&quot;Core\$(ConfigurationName)&quot;;&quot;Collision\$(ConfigurationName)_$(PlatformName)&quot;;&quot;FluidBodySim\$(ConfigurationName)&quot;;&quot;Image\$(ConfigurationName)_$(PlatformName)&quot;;&quot;Impulsion\$(ConfigurationName)_$(PlatformName)&quot;;&quot;Particles\$(ConfigurationName)_$(PlatformName)&quot;;&quot;Render\$(ConfigurationName)_$(PlatformName)&quot;;&quot;QdRender\$(ConfigurationName)&quot;;&quot;VortonFluid\$(ConfigurationName)&quot;;&quot;External/glut-3.7.6/Release&quot;;&quot;$(TBB22_INSTALL_DIR)\ia32\vc7.1\lib&quot;"
+				GenerateDebugInformation="TRUE"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
+				FixedBaseAddress="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Description="Copying DLLs from External to executable dir."
+				CommandLine="copy &quot;External\glut-3.7.6\Release\glut32.dll&quot; &quot;$(OutDir)&quot;
+copy &quot;$(TBB22_INSTALL_DIR)\ia32\vc7.1\bin\tbb.dll&quot;  &quot;$(OutDir)&quot;
+
+"/>
+			<Tool
+				Name="VCPreBuildEventTool"
+				Description="Releasing PDB file handle"
+				CommandLine="Scripts\freePdb-koltaiga.cmd $(ProjectName)"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			<File
+				RelativePath=".\diagnostics.cpp">
+			</File>
+			<File
+				RelativePath=".\entity.cpp">
+			</File>
+			<File
+				RelativePath=".\entity.h">
+			</File>
+			<File
+				RelativePath=".\inteSiVis.cpp">
+			</File>
+			<File
+				RelativePath=".\inteSiVis.h">
+			</File>
+			<File
+				RelativePath=".\main.cpp">
+			</File>
+			<File
+				RelativePath=".\particleSystemConfiguration.cpp">
+			</File>
+			<File
+				RelativePath=".\particleSystemConfiguration.h">
+			</File>
+			<Filter
+				Name="Sim"
+				Filter="">
+				<Filter
+					Name="Vorton"
+					Filter="">
+					<File
+						RelativePath=".\Sim\Vorton\vorticityDistribution.cpp">
+					</File>
+					<File
+						RelativePath=".\Sim\Vorton\vorticityDistribution.h">
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Scene"
+				Filter="">
+				<File
+					RelativePath=".\Scene\fluidScene.cpp">
+				</File>
+				<File
+					RelativePath=".\Scene\fluidScene.h">
+				</File>
+				<Filter
+					Name="QuicknDirty"
+					Filter="">
+					<File
+						RelativePath=".\Scene\createQdMaterials.cpp">
+					</File>
+					<File
+						RelativePath=".\Scene\qdRenderScene.cpp">
+					</File>
+				</Filter>
+			</Filter>
+		</Filter>
+		<File
+			RelativePath=".\icon1.ico">
+		</File>
+		<File
+			RelativePath=".\resource.h">
+		</File>
+		<File
+			RelativePath=".\VorteGrid.rc">
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

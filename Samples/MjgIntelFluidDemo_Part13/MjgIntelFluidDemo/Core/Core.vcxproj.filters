@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Math">
+      <UniqueIdentifier>{16d8ffd6-f668-4427-826a-422cb37bba08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Performance">
+      <UniqueIdentifier>{bc305883-5a8d-4da6-a46f-25dcca3351bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+    <Filter Include="Space">
+      <UniqueIdentifier>{cfbf431a-ce6f-4193-94c3-0410892690c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Math\mat33.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\mat4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\math.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\plane.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\vec3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\vec4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Performance\perf.h">
+      <Filter>Performance</Filter>
+    </ClInclude>
+    <ClInclude Include="Space\nestedGrid.h">
+      <Filter>Space</Filter>
+    </ClInclude>
+    <ClInclude Include="Space\uniformGrid.h">
+      <Filter>Space</Filter>
+    </ClInclude>
+    <ClInclude Include="Space\uniformGridMath.h">
+      <Filter>Space</Filter>
+    </ClInclude>
+    <ClInclude Include="useTbb.h" />
+    <ClInclude Include="wrapperMacros.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Space\nestedGridDiagnostics.cpp">
+      <Filter>Space</Filter>
+    </ClCompile>
+    <ClCompile Include="Space\uniformGridDiagnostics.cpp">
+      <Filter>Space</Filter>
+    </ClCompile>
+    <ClCompile Include="Space\uniformGridMath.cpp">
+      <Filter>Space</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

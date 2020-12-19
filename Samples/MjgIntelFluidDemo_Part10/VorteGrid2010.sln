@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VorteGrid", "VorteGrid.vcxproj", "{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		ProfileWithoutTbb|Win32 = ProfileWithoutTbb|Win32
+		ProfileWithTbb|Win32 = ProfileWithTbb|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.Debug|Win32.Build.0 = Debug|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.ProfileWithoutTbb|Win32.ActiveCfg = ProfileWithoutTbb|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.ProfileWithoutTbb|Win32.Build.0 = ProfileWithoutTbb|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.ProfileWithTbb|Win32.ActiveCfg = ProfileWithTbb|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.ProfileWithTbb|Win32.Build.0 = ProfileWithTbb|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.Release|Win32.ActiveCfg = Release|Win32
+		{C64078BC-8A63-4C3D-B48D-ECC2B60E75E6}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,53 @@
+/** \file qdLight.h
+
+    \brief Class to set a light for rendering
+
+    \see Accompanying articles for more information:
+        - http://software.intel.com/en-us/articles/fluid-simulation-for-video-games-part-1/
+
+        - http://www.gamasutra.com/view/feature/4164/sponsored_feature_fluid_.php
+        - http://www.gamasutra.com/view/feature/4176/sponsored_feature_fluid_.php
+
+        - http://www.mijagourlay.com/
+
+    \author Copyright 2009-2014 Dr. Michael Jason Gourlay; All rights reserved.  Contact me at mijagourlay.com for licensing.
+*/
+#ifndef QD_LIGHT_H
+#define QD_LIGHT_H
+
+#include "Core/Math/vec3.h"
+
+/** Class to set a light for rendering.
+*/
+class QdLight
+{
+    public:
+        enum LightType
+        {
+            LT_POINT        ,
+            LT_SPOT         ,
+            LT_DIRECTIONAL  ,
+            LT_NUM
+        } ;
+
+        QdLight() ;
+        ~QdLight() ;
+
+        void        SetLight( int iLight , float timeNow ) ;
+
+        static void DisableLights( void ) ;
+
+        static const size_t MAX_NUM_VARIATIONS = 4 ;
+
+        Vec3        mPosition                           ;   ///< Position of light
+        Vec3        mColor                              ;   ///< Color of light
+        Vec3        mAttenuation                        ;   ///< Constant, linear and quadratic attenuation coefficients
+        LightType   mType                               ;   ///< Type of light: point, spot or directional
+        float       mAmplitudes[ MAX_NUM_VARIATIONS ]   ;   ///< Amplitudes of variation
+        float       mFrequencies[ MAX_NUM_VARIATIONS ]  ;   ///< Frequencies of variation
+} ;
+
+// Public variables --------------------------------------------------------------
+// Public functions --------------------------------------------------------------
+
+#endif
